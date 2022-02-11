@@ -1,5 +1,5 @@
 {
   "git.ignoreLimitWarning": true,
   "eslint.validate": ["html", "javascript", "javascriptreact"],
-  "python.pythonPath": "api/.venv/bin/python3"
+  "python.defaultInterpreterPath": "api/.venv/bin/python3"
 }
