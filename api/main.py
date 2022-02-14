@@ -1,4 +1,5 @@
 # save this as app.py
+from pickle import TRUE
 from flask import Flask, request
 from dotenv import load_dotenv
 import requests
@@ -8,13 +9,16 @@ load_dotenv(dotenv_path='./.env.local')
 
 UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY", '')
 UNSPLASH_URL=os.environ.get("UNSPLASH_URL", '')
+DEBUG_MODE=bool(os.environ.get("DEBUG_MODE", True))
 
 if not UNSPLASH_KEY:
     raise EnvironmentError("Please create .env.local file and insert UNSPLASH_KEY")
 
 app = Flask(__name__)
 
-@app.route("/")
+app.config["DEBUG"] = DEBUG_MODE
+    
+@app.route("/") 
 def hello():
     return "Hello, World!"
 
