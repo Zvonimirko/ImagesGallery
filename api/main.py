@@ -9,7 +9,7 @@ import os
 load_dotenv(dotenv_path="./.env.local")
 
 UNSPLASH_KEY = os.environ.get("UNSPLASH_KEY", "")
-UNSPLASH_URL = os.environ.get("UNSPLASH_URL", "")
+UNSPLASH_URL = "https://api.unsplash.com/photos/random"
 DEBUG_MODE = bool(os.environ.get("DEBUG_MODE", True))
 
 if not UNSPLASH_KEY:
@@ -35,7 +35,7 @@ def new_image():
         "Accept-Version": "v1",
         "Access-Control-Allow-Origin": "*",
     }
-    params = {"query": word, "per_page": 20}
+    params = {"query": word, "per_page": 3}
     response = requests.get(url=UNSPLASH_URL, headers=headers, params=params)
 
     data = response.json()

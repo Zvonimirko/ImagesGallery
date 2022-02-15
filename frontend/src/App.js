@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Header } from './components/Header';
 import { Welcome } from './components/Welcome';
 import { Search } from './components/Search';
-import { fetchImages } from './api';
+import { fetchImage } from './api';
 import ImageCard from './components/ImageCard/ImageCard';
 import { ImageCardContainerStyle } from './style';
 
@@ -18,8 +18,8 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetchImages(formValues.searchInput);
-    setImages((prev) => [...prev, ...res]);
+    const res = await fetchImage(formValues.searchInput);
+    res && setImages((prev) => [...prev, res]);
     setFormValues((prev) => ({ ...prev, searchInput: '' }));
   };
 
@@ -28,7 +28,14 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
       <Header title="Images Gallery" />
       <Search
         handleSubmit={handleSubmit}
@@ -37,7 +44,7 @@ function App() {
       />
       <Container style={ImageCardContainerStyle} fluid="true" className="m-4">
         {images.length ? (
-          <Row className="justify-content-center" xl={4} lg={3} md={2} xs={1}>
+          <Row className="justify-content-start" xl={4} lg={3} md={2} xs={1}>
             {images.map((image) => {
               return (
                 <Col key={image.id} className="pb-3">
