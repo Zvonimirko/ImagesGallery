@@ -1,10 +1,10 @@
-# save this as app.py
 from flask import Flask, request
 from dotenv import load_dotenv
-from flask_cors import CORS
-
 import requests
 import os
+
+from mongo_client import insert_test_document
+from flask_cors import CORS
 
 load_dotenv(dotenv_path="./.env.local")
 
