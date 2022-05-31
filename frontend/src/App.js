@@ -18,6 +18,9 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formValues.searchInput) {
+      return;
+    }
     const res = await fetchImage(formValues.searchInput);
     res && setImages((prev) => [...prev, res]);
     setFormValues((prev) => ({ ...prev, searchInput: '' }));
